@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trimble Project — 3 Years of Impact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:   #0f1f3d;
+      --gold:   #c9a84c;
+      --cream:  #f7f3ec;
+      --white:  #ffffff;
+      --muted:  #6b7280;
+      --light:  #eef2f8;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(15,31,61,0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      scroll-behavior: smooth;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+    .topbar .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+      color: var(--gold);
+    }
+    .topbar .logo span { color: var(--white); }
+    .topbar nav { display: flex; gap: 8px; }
+    .topbar nav button {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      font-weight: 500;
+    }
+    .topbar nav button:hover,
+    .topbar nav button.active {
+      background: rgba(201,168,76,0.15);
+      color: var(--gold);
+    }
+
+    /* ── PAGES ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 80px 40px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.18);
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.72);
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    /* ── STAT STRIP ── */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      background: var(--white);
+      border-bottom: 1px solid rgba(15,31,61,0.08);
+    }
+    .stat {
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+      padding: 28px 20px;
+      border-right: 1px solid rgba(15,31,61,0.08);
+    }
+    .stat:last-child { border-right: none; }
+    .stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat .num span { color: var(--gold); }
+    .stat .lbl {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── SECTION HEADING ── */
+    .section { padding: 56px 40px; max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      letter-spacing: 0.3px;
+    }
+    .gold-line {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 12px 0 32px;
+    }
+
+    /* ── YEAR TABS ── */
+    .year-tabs {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 24px 40px 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .year-tab {
+      background: var(--white);
+      border: 2px solid rgba(15,31,61,0.10);
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .year-tab:hover { border-color: var(--gold); }
+    .year-tab.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--gold);
+    }
+
+    /* ── YEAR CONTENT ── */
+    .year-content { display: none; }
+    .year-content.active { display: block; }
+
+    /* ── DIVISION CARDS ── */
+    .divisions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .div-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .div-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(15,31,61,0.14);
+    }
+    .div-card-header {
+      background: var(--navy);
+      padding: 20px 24px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .div-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(201,168,76,0.18);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .div-card-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: var(--white);
+    }
+    .div-card-header p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+    }
+    .div-card-body { padding: 20px 24px 24px; }
+
+    /* Photo placeholder */
+    .photo-placeholder {
+      background: var(--light);
+      border: 2px dashed rgba(15,31,61,0.15);
+      border-radius: 8px;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .photo-placeholder:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.05);
+    }
+    .photo-placeholder .ph-icon { font-size: 28px; opacity: 0.4; }
+    .photo-placeholder .ph-text { font-size: 12px; color: var(--muted); }
+
+    /* Activity list */
+    .activity-list { list-style: none; }
+    .activity-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(15,31,61,0.06);
+      font-size: 14px;
+      color: var(--navy);
+      line-height: 1.5;
+    }
+    .activity-list li:last-child { border-bottom: none; }
+    .activity-list li::before {
+      content: '▸';
+      color: var(--gold);
+      font-size: 12px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Doc links */
+    .doc-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--light);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--navy);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .doc-link:hover { background: rgba(201,168,76,0.12); color: var(--navy); }
+    .doc-icon { font-size: 16px; }
+
+    /* ── GALLERY GRID ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .gallery-item {
+      aspect-ratio: 1;
+      background: var(--light);
+      border: 2px dashed rgba(15,31,61,0.12);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .gallery-item:hover { border-color: var(--gold); }
+    .gallery-item .ph-icon { font-size: 24px; margin-bottom: 6px; opacity: 0.35; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.2));
+    }
+    .tl-item { position: relative; margin-bottom: 28px; }
+    .tl-dot {
+      position: absolute;
+      left: -22px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--cream);
+    }
+    .tl-date {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .tl-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── CONTACT / TEAM SECTION ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .team-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .team-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--light);
+      border: 3px dashed rgba(15,31,61,0.12);
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+    }
+    .team-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .team-card p { font-size: 12px; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 28px;
+      font-size: 13px;
+      margin-top: 48px;
+    }
+    footer strong { color: var(--gold); }
+
+    /* ── EDIT HINTS ── */
+    [data-edit] {
+      position: relative;
+      cursor: text;
+    }
+    [data-edit]:hover::after {
+      content: '✏ click to edit';
+      position: absolute;
+      top: -22px; left: 0;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    @media (max-width: 640px) {
+      .topbar { padding: 0 16px; }
+      .topbar nav button { font-size: 12px; padding: 6px 10px; }
+      .hero { padding: 48px 20px; }
+      .section { padding: 36px 20px; }
+      .year-tabs { padding: 16px 20px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     TOP NAVIGATION BAR
+     ─ Change "Trimble" to your project name
+     ─ Add/remove nav buttons as needed
+═══════════════════════════════════ -->
+<header class="topbar">
+  <div class="logo">Trimble <span>Project</span></div>
+  <nav>
+    <button class="active" onclick="showPage('home', this)">Home</button>
+    <button onclick="showPage('years', this)">Our Work</button>
+    <button onclick="showPage('gallery', this)">Gallery</button>
+    <button onclick="showPage('team', this)">Team</button>
+  </nav>
+</header>
+
+
+<!-- ═══════════════════════════════════
+     PAGE 1 — HOME
+═══════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO: Edit the title, subtitle, and badge text below -->
+  <section class="hero">
+    <div class="hero-badge">✦ 2023 — 2026</div>
+    <h1>STEM-Empowering<br><em>the Girls in STEM </em> and Beyond</h1>
+    <p data-edit>
+      The Trimble Project is a community-driven initiative focused on strengthening STEM education,
+       improving school infrastructure, and empowering students through innovation and hands-on learning. 
+       The project also builds stronger communities by engaging teachers, mothers, and volunteers
+       through meaningful programs and collaborative activities.
+    </p>
+  </section>
+
+  <!-- STATS: Replace the numbers with your real data -->
+  <div class="stats">
+    <div class="stat">
+      <div class="num">3<span>yrs</span></div>
+      <div class="lbl">Years of work</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-edit>107<span></span></div>
+      <div class="lbl">Mothers Empowered</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-edit>5000+</div>
+      <div class="lbl">Sessions</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-edit>2200<span>+</span></div>
+      <div class="lbl">Students Reached</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-edit>50<span>+</span></div>
+      <div class="lbl">Projects built</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-edit>530<span>+</span></div>
+      <div class="lbl">Volunteers Reached</div>
+    </div>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <div class="section">
+    <h2 class="section-title">About the Project</h2>
+    <div class="gold-line"></div>
+    <p style="font-size:15px;line-height:1.8;color:#374151;max-width:720px" data-edit>
+      The Trimble Project, in partnership with Learning Links Foundation, is a community-driven initiative focused on
+      strengthening STEM education, empowering girl students, and building an inclusive learning ecosystem through innovation, 
+      technology, and community engagement. The project aims to bridge the gender gap in STEM by providing equitable access to hands-on learning,
+      emerging technologies, leadership opportunities, career guidance, and innovation platforms that enhance academic achievement, creativity,
+      critical thinking, and future-ready skills among students.The initiative also promotes women empowerment by supporting mothers through 
+      financial literacy, vocational training, enterprise opportunities, market exposure, and access to government schemes and savings
+      initiatives. By fostering strong school–community partnerships, volunteering programs, and sustainable development efforts, the project
+      contributes towards gender equality, social transformation, and long-term community impact. 
+    </p>
+
+    <!-- TIMELINE: Add your key milestones below -->
+    <div style="margin-top:40px;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:20px;">Key Milestones</h3>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">January 2023</div>
+          <div class="tl-title" data-edit>Project Launch</div>
+          <div class="tl-desc" data-edit>The STEM Lab under the Trimble Project, in partnership with Learning Links Foundation, was officially launched on September 11, 2023,
+             at Jaigopal Garodia Government Girls Higher Secondary School. The launch marked the beginning of a transformative initiative aimed at empowering girl students through
+              hands-on STEM education, innovation, digital learning, and experiential activities designed to enhance creativity, 
+             problem-solving, and future-ready skills.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date" data-edit>Since 2023</div>
+          <div class="tl-title" data-edit>Transforming Education Through STEM Innovation</div>
+          <div class="tl-desc" data-edit>The Trimble STEM Lab at Jaigopal Garodia Government Girls Higher Secondary School has achieved several significant milestones in STEM education, 
+            student empowerment, and community engagement. The project has positively impacted hundreds of girl students through hands-on STEM learning, innovation activities, 
+            advanced project-based sessions, career guidance, scholarship opportunities, and exposure to emerging technologies.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Journey of 2023 - 2026</div>
+          <div class="tl-title" data-edit>Project Showcase</div>
+          <div class="tl-desc" data-edit>Through robotics, coding, 3D design, project-based learning, competitions, scholarships, and leadership opportunities, students have developed creativity, 
+            confidence, critical thinking, and problem-solving abilities while gaining recognition at district, state, national, and international platforms.The project has also focused on 
+            strengthening teacher capacity through STEM and digital upskilling programs and empowering mothers through financial literacy, vocational training, enterprise opportunities, and awareness on
+             government schemes and savings initiatives.By fostering strong school–community partnerships, volunteering activities, and inclusive development initiatives. 
+             The project continues to contribute towards gender equality, innovation, leadership development, and sustainable social impact..</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page-home -->
+
+
+<!-- ═══════════════════════════════════
+     PAGE 2 — OUR WORK (Year by Year)
+     Each year has 5 division cards.
+     Edit the text inside each card.
+═══════════════════════════════════ -->
+<div id="page-years" class="page">
+
+  <!-- Year selector tabs -->
+  <div class="year-tabs">
+    <button class="year-tab active" onclick="showYear('2023', this)">2023</button>
+    <button class="year-tab" onclick="showYear('2024', this)">2024</button>
+    <button class="year-tab" onclick="showYear('2025', this)">2025</button>
+  </div>
+
+  <!-- ── YEAR 2023 ── -->
+  <div id="year-2023" class="year-content active">
+    <div class="section">
+      <h2 class="section-title">Year 2023</h2>
+      <p class="section-sub" data-edit>The year 2023 marked a significant milestone for the Trimble Project as it began its journey towards empowering girls through STEM education 
+        and community transformation across Chennai and Mumbai. In partnership with Learning Links Foundation, the initiative created impactful learning opportunities through 
+        STEM tinkering sessions, life skills programs, innovation activities, teacher training, and women empowerment initiatives. Students actively participated in 
+        national and international competitions, innovation challenges, and exposure visits, while mothers benefited from financial literacy and vocational training programs
+         that promoted economic independence and confidence.The project also strengthened school infrastructure through STEM lab development, classroom enhancements, 
+         and volunteering initiatives, creating a more inclusive, innovative, and future-ready learning ecosystem..</p>
+      <div class="gold-line"></div>
+
+      <div class="divisions-grid">
+
+        <!-- CARD 1: Infrastructure -->
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🏗️</div>
+            <div>
+              <h3>Infrastructure</h3>
+              <p>Construction &amp; Improvements</p>
+            </div>
+          </div>
+          <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>STEM LAB Setup</li>
+              <li data-edit>Incinerator Donation</li>
+              <li data-edit>Green Board and Black Board Paintings</li>
+              <li data-edit>Chairs Contributed</li>
+              <li data-edit>Window Grid and Sheet Installation</li>
+              <li data-edit>Electrical Supplies Provision</li>
+              <li data-edit>RO Water Cooler and Project Installation</li>
+              <li data-edit>Cupboard,Tables and Chairs with Equipments</li>
+            </ul>
+            <!-- Add a document link: replace href with your PDF path -->
+            <a href="documents/Annual-2023-report.pdf" class="doc-link">
+              <span class="doc-icon">📄</span> Infrastructure Report 2023
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2: Volunteering -->
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🤝</div>
+            <div>
+              <h3>Volunteering</h3>
+              <p>Community Activities</p>
+            </div>
+          </div>
+          <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Trimble Office Visit - August 28 2023</li>
+              <li data-edit>Plantation Activity -  October 6 2023</li>
+              <li data-edit>Resistor color Wheel - November 1 & 2 , 2023</li>
+              <li data-edit>Donor Visit to Mumbai -November 3 2023</li>
+            </ul>
+            <a href="documents/Trimble visit-2023-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Trimble Office visit Volunteer Report 2023</a>
+            <a href="documents/Plantation-2023-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Plantation Volunteer Report 2023</a>
+            <a href="documents/Resistor Color Wheel-2023-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Resisitor Color Volunteer Report 2023</a>
+            <a href="documents/Donor Visit to Mumbai -2023-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Donor Visit Volunteer Report 2023</a>
+          </div>
+        </div>
+
+        <!-- CARD 3: Events & Programs -->
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🎉</div>
+            <div>
+              <h3>Events &amp; Programs</h3>
+              <p>Activities</p>
+            </div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Teacher Upskilling Session</li>
+              <li data-edit>Innovation Fair</li>
+              <li data-edit>StemLab Launch</li>
+              <li data-edit>Human Resource Upskilling Session</li>
+            </ul>
+            <a href="documents/events-2023-report.pdf" class="doc-link">
+              <span class="doc-icon">📄</span> Events Report 2023
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 4: Student Support -->
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">📚</div>
+            <div>
+              <h3>Student Support</h3>
+              <p>Education &amp; Welfare</p>
+            </div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Tinkering and Life skill sessions - Students Attendance</li>
+              <li data-edit>Competitions</li>
+            </ul>
+            <a href="documents/students-2023-report.pdf" class="doc-link">
+              <span class="doc-icon">📄</span> Reports 
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 5: Community Outreach -->
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🌍</div>
+            <div>
+              <h3>Community Outreach</h3>
+              <p>Beyond the School</p>
+            </div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Women Empowerment</li>
+              <li data-edit>Financial Literacy for Parents</li>
+              <li data-edit>Digital Literacy</li>
+              <li data-edit>Parent Teacher Meeting</li>
+        
+            </ul>
+            <a href="documents/community-2023-report.pdf" class="doc-link">
+              <span class="doc-icon">📄</span> Outreach Report 2023
+            </a>
+          </div>
+        </div>
+
+      </div><!-- end divisions-grid -->
+    </div>
+  </div><!-- end year-2023 -->
+
+
+  <!-- ── YEAR 2024 ── (same structure, copy and edit) -->
+  <div id="year-2024" class="year-content">
+    <div class="section">
+      <h2 class="section-title">Year 2024</h2>
+      <p class="section-sub" data-edit>The year 2024–25 was marked by significant achievements in STEM education, innovation, and community empowerment 
+        through the Trimble Project. Students actively participated in national and state-level competitions, hands-on tinkering sessions, innovation challenges, 
+        and career guidance initiatives that strengthened creativity, leadership, and future-ready skills. The project also enhanced STEM and science lab infrastructure, 
+        empowered teachers through digital upskilling programs, and supported mothers through financial literacy, vocational training, and women empowerment initiatives, 
+        creating a strong and inclusive learning ecosystem across Chennai and Mumbai.</p>
+      <div class="gold-line"></div>
+      <div class="divisions-grid">
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🏗️</div>
+            <div><h3>Infrastructure</h3><p>Construction &amp; Improvements</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Science Lab Setup</li>
+              <li data-edit>STEM Lab Upgradation</li>
+              <li data-edit>BALA Painting in Classroom and Corridor</li>
+              <li data-edit>Classroom Wall Painting</li>
+              <li data-edit>Exterior Wall Painting</li>
+              <li data-edit>Safety Grill and Windows</li>
+              <li data-edit>Library Enhancement</li>
+            </ul>
+            <a href="documents/Annual 2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Annual Report 2024</a>
+          </div>
+        </div>
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🤝</div>
+            <div><h3>Volunteering</h3><p>Community Activities</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Science Fair- 26,27,28 June 2024</li>
+              <li data-edit>Resistor colour wheel - 3rd & 4th september 2024</li>
+              <li data-edit>Paper Circuit Activity - 8th October 2024</li>
+              <li data-edit>Rubix Cube Gaming Activity - 19th November 2024</li>
+              <li data-edit>Trimble Offfice Visit - 5th December 2024</li>
+              <li data-edit>Resin Art Activity - 9th & 10th January 2025</li>
+              <li data-edit>BALA Painting - 30 & 31st January 2025</li>
+              <li data-edit>Read and Rise Library Organisation Drive- 28th February 2025</li>
+            </ul>
+            <a href="documents/Science-2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Volunteer Report 1- Science Fair 2024</a>
+            <a href="documents/Resistor color wheel-2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Volunteer Report 2 - Resistor Color 2024</a>
+            <a href="documents/Paper Circuit -2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Volunteer Report 3 - Paper Circuit 2024</a>
+            <a href="documents/Rubix Cube -2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Volunteer Report 4 - Rubix Cube 2024</a>
+            <a href="documents/Trimble office visit -2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Volunteer Report 5 -Trimble Office Visit 2024</a>
+            <a href="documents/ Resin Art Activity -2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Volunteer Report 6 - Resin Art 2025</a>
+            <a href="documents/Bala Painting -2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Volunteer Report 7 - Bala Painting 2025</a>
+            <a href="documents/ReadandRise -2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Volunteer Report 8 - ReadandRise 2025</a>
+          </div>
+        </div>
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🎉</div>
+            <div><h3>Events &amp; Programs</h3><p>School Activities</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Innovation Fair  activity</li>
+              <li data-edit>Teachers Upskilling Session </li>
+              <li data-edit>Human Resource Upskilling Session </li>
+            </ul>
+            <a href="documents/Innovation Fair-2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Innovation Fair Report 2024</a>
+            <a href="documents/TCB-2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> TCB Report 2024</a>
+            <a href="documents/Human Resource Upskilling -2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> HR Upskilling Report 2024</a>
+          </div>
+        </div>
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">📚</div>
+            <div><h3>Student Support</h3><p>Education &amp; Welfare</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>STEM Club activity</li>
+              <li data-edit>Competitions and Exposure Activity</li>
+            </ul>
+            <a href="documents/stem club activity-2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Student Support Report 2024</a>
+            <a href="documents/competition -2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Student Support Report 2024</a>
+          </div>
+        </div>
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🌍</div>
+            <div><h3>Community Outreach</h3><p>Beyond the School</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Skill development for Mothers</li>
+              <li data-edit>Parent Teachers Meeting </li>
+              <li data-edit>Digital Literacy Session for Mothers</li>
+            </ul>
+            <a href="documents/community-2023-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Outreach Report 2023</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- end year-2024 -->
+
+
+  <!-- ── YEAR 2025 ── -->
+  <div id="year-2025" class="year-content">
+    <div class="section">
+      <h2 class="section-title">Year 2025</h2>
+      <p class="section-sub" data-edit>The Trimble Project 2025–26 stood out for its remarkable achievements in empowering girls through STEM education, 
+        innovation, and community engagement across Chennai and Mumbai. Students actively participated in major competitions such as SIDP 2025, Technova25, 
+        InnovaTN, Bebras India Challenge, Young Kalam Science Festival, and Khoj-7 Innovation Competition, winning prizes and earning recognition at district, 
+        state, and international levels. The project successfully conducted over 1,100 tinkering sessions along with digital literacy, life skill, and teacher upskilling programs, 
+        creating a strong culture of innovation and hands-on learning. Women empowerment initiatives enabled mothers to receive vocational training and showcase their products through 
+        enterprise activities, collectively earning nearly ₹20,000 and building entrepreneurial confidence. A major milestone of the year was receiving 
+        the “Most Impactful Girl Child Education Programme Initiative of the Year – 2025”award at the Indian CSR Summit & Awards 2025, recognizing the project’s outstanding social impact.</p>
+      <div class="gold-line"></div>
+      <div class="divisions-grid">
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🏗️</div>
+            <div><h3>Infrastructure</h3><p>Construction &amp; Improvements</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Teachers Workspace Renovation</li>
+              <li data-edit>Indoor Sports Arena</li>
+              <li data-edit>Handwash Area </li>
+              <li data-edit>Pathway Shelter </li>
+            </ul>
+            <a href="documents/Annual 2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Annual Report 2025</a>
+          </div>
+        </div>
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🤝</div>
+            <div><h3>Volunteering</h3><p>Community Activities</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>GameON Activity - 7th & 8th August</li>
+              <li data-edit>Read and Rise Library Activity - 8th October</li>
+              <li data-edit>Rail Museum visit- 14,28 & 29 October</li>
+              <li data-edit>Paper Circuit activity - 2nd November</li>
+              <li data-edit>Treasure Hunt - 20th & 21st January</li>
+              <li data-edit>Plantation Activity - 6th & 10th February</li>
+              <li data-edit>Science Xplore - 3rd February</li>
+            </ul>
+            <a href="documents/GameOn-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> GameOn Volunteer Report 2025</a>
+            <a href="documents/Read and Rise-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Read and Rise Volunteer Report 2025</a>
+            <a href="documents/Rail Museum-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Rail Museum Volunteer Report 2025</a>
+            <a href="documents/Paper Circuit-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Paper Circuit Volunteer Report 2025</a>
+            <a href="documents/Treasure Hunt-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Treasure Hunt Volunteer Report 2025</a>
+            <a href="documents/Plantation-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Plantation Volunteer Report 2025</a>
+            <a href="documents/Science Xplore-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span>Science Xplore Volunteer Report 2025</a>
+          </div>
+        </div>
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🎉</div>
+            <div><h3>Events &amp; Programs</h3><p>School Activities</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Trimble Donor Visit- Mumbai</li>
+              <li data-edit>Replace with your 2024 activity</li>
+              <li data-edit>Replace with your 2024 activity</li>
+            </ul>
+            <a href="documents/events-2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Events Report 2024</a>
+          </div>
+        </div>
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">📚</div>
+            <div><h3>Student Support</h3><p>Education &amp; Welfare</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Scholarship for Students</li>
+              <li data-edit>Competitions </li>
+              <li data-edit>Teacher Capacity Building</li>
+            </ul>
+            <a href="documents/scholarship-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Student Scholarship Report 2025</a>
+            <a href="documents/Competitions-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Student Competitions Report 2025</a>
+            <a href="documents/TCB-2025-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Student Support Report 2024</a>
+          </div>
+        </div>
+
+        <div class="div-card">
+          <div class="div-card-header">
+            <div class="div-icon">🌍</div>
+            <div><h3>Community Outreach</h3><p>Beyond the School</p></div>
+          </div>
+          <div class="div-card-body">
+            <img src="images/infra-2022.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+            <ul class="activity-list">
+              <li data-edit>Skill To Enterprise Initiative</li>
+              <li data-edit>Women Empowerment Session</li>
+              <li data-edit>Financial Literacy Session</li>
+            </ul>
+            <a href="documents/community-2024-report.pdf" class="doc-link"><span class="doc-icon">📄</span> Outreach Report 2024</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- end year-2025 -->
+
+</div><!-- end page-years -->
+
+
+<!-- ═══════════════════════════════════
+     PAGE 3 — GALLERY
+     Replace the placeholder divs with real <img> tags
+     e.g. <img src="images/photo1.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+═══════════════════════════════════ -->
+<div id="page-gallery" class="page">
+  <div class="section">
+    <h2 class="section-title">Photo Gallery</h2>
+    <p class="section-sub">3 years of memories </p>
+    <div class="gold-line"></div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:16px;color:var(--muted)">2023</h3>
+    <div class="gallery-grid" style="margin-bottom:36px;">
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 1</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 2</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 3</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 4</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 5</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 6</div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:16px;color:var(--muted)">2024</h3>
+    <div class="gallery-grid" style="margin-bottom:36px;">
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 1</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 2</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 3</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 4</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 5</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 6</div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:16px;color:var(--muted)">2025</h3>
+    <div class="gallery-grid">
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 1</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 2</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 3</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 4</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 5</div>
+      <div class="gallery-item"><div class="ph-icon">📷</div>Photo 6</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     PAGE 4 — TEAM
+     Replace each card with your team members
+═══════════════════════════════════ -->
+<div id="page-team" class="page">
+  <div class="section">
+    <h2 class="section-title">Our Team</h2>
+    <p class="section-sub" data-edit>The people behind 3 years of the TrimbleProject</p>
+    <div class="gold-line"></div>
+    <div class="team-grid">
+
+      <!-- Replace with real team members -->
+      <div class="team-card">
+        <div class="team-avatar">👤</div>
+        <h4 data-edit>Sudha Priyadharshan</h4>
+        <p data-edit>Project Head </p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👤</div>
+        <h4 data-edit>Shahini</h4>
+        <p data-edit>Project Manager</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👤</div>
+        <h4 data-edit>Monika Preethi- Chennai</h4>
+        <p data-edit>Senior Officer</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👤</div>
+        <h4 data-edit>SwethaMurugaboopathy- Chennai</h4>
+        <p data-edit>Senior Officer</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👤</div>
+        <h4 data-edit>Dipali Shinde-Mumbai</h4>
+        <p data-edit>Senior Officer</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👤</div>
+        <h4 data-edit>Ishwar Desai- Mumbai</h4>
+        <p data-edit>Senior Officer</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     FOOTER — Edit the text below
+═══════════════════════════════════ -->
+<footer>
+  <strong>TrimbleProject</strong> &nbsp;·&nbsp; 2023 – 2025 &nbsp;·&nbsp;
+  Built with ❤️ for our school community
+</footer>
+
+
+<script>
+  // ── Navigate between pages
+  function showPage(id, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.topbar nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Switch year tabs
+  function showYear(year, btn) {
+    document.querySelectorAll('.year-content').forEach(y => y.classList.remove('active'));
+    document.querySelectorAll('.year-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('year-' + year).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
